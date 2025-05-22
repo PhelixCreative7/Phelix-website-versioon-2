@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<link rel="stylesheet" href="Css Documents/style.css">
 <body>
 
     <!-- <---------------------------------------------
@@ -18,6 +19,70 @@
     This is sayali's section
     ------------------------------------------- -->
     <section class="sayali">
+          <div class="center-text">
+    <div class="title">The Bold Identity</div>
+    <div class="subtitle">A brand is more than its look. It's a system of conviction, character, and craft.</div>
+  </div>
+
+  <div class="left-image">
+    <img src="Images/1.jpg" class="active-img" />
+    <img src="Images/2.jpg" />
+    <img src="Images/3.jpg" />
+    <img src="Images/4.jpg" />
+  </div>
+
+  <div class="right-text" id="text-container"></div>
+
+  <script>
+    const sections = [
+      { title: "Logo", desc: "Every great identity starts with a mark – a symbol so powerful it speaks without words. This is where distinction begins." },
+      { title: "Brand Color", desc: "Color is emotion in design. It sets the mood, crafts the vibe, and ensures your brand is felt, not just seen." },
+      { title: "Typography & Language", desc: "The voice of your brand isn’t just what you say. It’s how you say it – bold, clear, and unmistakably you." },
+      { title: "Interface & Layout", desc: "A bold identity is nothing without action. This is where design meets utility – your digital presence, executed with clarity." }
+    ];
+
+    let currentIndex = 0;
+    const container = document.getElementById("text-container");
+    const images = document.querySelectorAll('.left-image img');
+
+    function updateContent() {
+      // Update text
+      container.innerHTML = '';
+      sections.forEach((item, i) => {
+        const sectionDiv = document.createElement("div");
+        sectionDiv.className = "highlight-section";
+
+        const title = document.createElement("div");
+        title.className = "highlight-title " + (i === currentIndex ? "active" : "inactive");
+        title.textContent = item.title;
+        sectionDiv.appendChild(title);
+
+        if (i === currentIndex) {
+          const line = document.createElement("div");
+          line.className = "line";
+          sectionDiv.appendChild(line);
+
+          const desc = document.createElement("div");
+          desc.className = "highlight-description";
+          desc.textContent = item.desc;
+          sectionDiv.appendChild(desc);
+        }
+
+        container.appendChild(sectionDiv);
+      });
+
+      // Update images
+      images.forEach((img, i) => {
+        img.classList.toggle('active-img', i === currentIndex);
+      });
+    }
+
+    updateContent();
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % sections.length;
+      updateContent();
+    }, 3000);
+  </script>
     </section>
 
     <!-- <---------------------------------------------
